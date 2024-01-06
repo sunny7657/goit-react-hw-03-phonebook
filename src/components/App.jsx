@@ -14,17 +14,14 @@ export class App extends Component {
 
   componentDidMount() {
     const localData = localStorage.getItem('contacts');
-    if (localData && JSON.parse(localData).length > 0)
+    if (localData && JSON.parse(localData).length > 0) {
       this.setState({ contacts: JSON.parse(localData) });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts?.length !== this.state.contacts.length)
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-
-    if (prevState.contacts?.length > this.state.contacts.length) {
-      this.setState({ isDeleted: true });
-    }
   }
 
   handleSubmit = data => {
